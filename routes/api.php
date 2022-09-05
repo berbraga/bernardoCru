@@ -3,6 +3,11 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
+use App\Http\Controllers\apiProductsController;
+use App\Http\Controllers\marcaController;
+use App\Http\Controllers\doceController;
+use App\Http\Controllers\testeController;
+use App\Http\Controllers\patientController;
 
 
 /*
@@ -20,17 +25,26 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// [UserController::class, 'getAllUsers']'ApiController@getAllStudents'
+
+
+Route::apiResource('/products', apiProductsController::class);
+Route::apiResource('/doces', doceController::class);
+Route::apiResource('/teste', testeController::class);
+
+
+Route::apiResource('/patient', patientController::class);
+
+
+
+Route::apiResource('/marca', marcaController::class);
+
+
 Route::get('/students', [ApiController::class, 'getAllStudents']);
 
-// 'ApiController@getStudent'
 Route::get('/students/{id}', [ApiController::class, 'getStudent']);
 
-// 'ApiController@createStudent'
 Route::post('/students', [ApiController::class, 'createStudent']);
 
-// 'ApiController@updateStudent'
 Route::put('/students/{id}', [ApiController::class, 'updateStudent']);
 
-// 'ApiController@deleteStudent'
 Route::delete('/students/{id}', [ApiController::class, 'deleteStudent']);
